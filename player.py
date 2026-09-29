@@ -2,6 +2,7 @@ from circleshape import CircleShape
 from constants import *
 import pygame
 from shot import Shot
+from asteroid import Asteroid
 
 class Player(CircleShape):
     def __init__(self, x: int, y:int ):
@@ -51,8 +52,9 @@ class Player(CircleShape):
         if self.score_timer > 0:
             self.score_timer -= dt
 
-
-
+    def score_on_kill(self, other: Asteroid):
+        self.kill_score += (other.radius * KILL_SCORE_MULT)
+    
     def move(self, dt):
         unit_vector = pygame.Vector2(0, 1)
         rotated_vector = unit_vector.rotate(self.rotation)
