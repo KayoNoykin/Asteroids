@@ -10,6 +10,8 @@ class Player(CircleShape):
         self.shot_cooldown = 0
         self.score_timer = 0
         self.score = 0
+        self.kill_score = 0
+        self.time_score = 0
 
     # in the Player class
     def triangle(self) -> list[pygame.Vector2]:
@@ -44,7 +46,7 @@ class Player(CircleShape):
         if self.shot_cooldown > 0:
             self.shot_cooldown -= dt
         if self.score_timer <=0:
-            self.score += 10
+            self.time_score += TIME_SCORE_MULT
             self.score_timer = SCORE_TIMER
         if self.score_timer > 0:
             self.score_timer -= dt
